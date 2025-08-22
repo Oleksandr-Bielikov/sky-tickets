@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router';
+import { Routes, Route } from 'react-router';
 import './App.css'
 import FlightsPage from './components/flightsPage';
 import FlightDetailPage from './components/flightDetailPage';
+import NavBar from './components/navBar';
 
 function App() {
   const [flights, setFligths] = useState([]);
-
-
 
   useEffect(() => {
     async function getData() {
@@ -22,10 +21,9 @@ function App() {
     getData()
   }, []);
 
-
   return (
     <>
-      <h1>SkyTickets</h1>
+      <NavBar />
       <Routes>
         <Route index path="/" element={<FlightsPage flights={flights} />} />
         <Route path='/flightDetails/:id' element={<FlightDetailPage />} />
