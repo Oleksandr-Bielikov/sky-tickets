@@ -1,8 +1,23 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import axios from "axios";
 import FligthCard from "../flightCard";
 
-function FlightsPage({ flights }) {
+function FlightsPage() {
+    const [flights, setFligths] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        async function getData() {
+            try {
+                const response = await axios.get('https://679d13f487618946e6544ccc.mockapi.io/testove/v1/flights')
+                setFligths(response.data)
+            } catch (error) {
+                console.error(error)
+            }
+        };
+        getData()
+    }, []);
 
     const handleShowMore = (id) => {
         navigate(`/flightDetails/${id}`);
