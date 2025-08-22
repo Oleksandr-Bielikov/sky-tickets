@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import axios from "axios";
-import { Box, Divider, Typography, Button } from '@mui/material';
+import { Box, Divider, Typography, Button, CircularProgress } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { nanoid } from "@reduxjs/toolkit";
 import { addTicket } from '../store/cartSlice';
@@ -24,7 +24,7 @@ function FlightDetailPage() {
         fetchFlight();
     }, [id]);
 
-    if (!flight) return <p>Loading...</p>
+    if (!flight) return <CircularProgress size="3rem" />
 
     const getTicket = () => {
         const value = Number(prompt('скільки квитків ви хочете придбати?'));
